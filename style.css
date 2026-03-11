@@ -121,18 +121,20 @@ margin:10px 0;
 /* hidden description box */
 
 .project-desc{
-position:absolute;
-top:10px;
-left:105%;
-width:260px;
-background:white;
-padding:15px;
-border-radius:10px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
-opacity:0;
-visibility:hidden;
-transition:0.3s;
-z-index:10;
+    position:absolute;
+    top:10px;
+    left:105%;
+    width:280px; /* slightly wider for longer description */
+    max-height:300px; /* limit height */
+    overflow-y:auto; /* scroll if content exceeds height */
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+    z-index:10;
 }
 
 /* speech bubble arrow */
@@ -217,4 +219,28 @@ transition:0.3s;
 
 .email-btn:hover{
 background:#0056b3;
+}
+
+@media (max-width: 768px) {
+    /* Stack project cards vertically on small screens */
+    .project-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Make the pop-up appear below the project card */
+    .project-desc {
+        position: relative;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Remove the speech bubble arrow on mobile */
+    .project-desc::before {
+        display: none;
+    }
 }
