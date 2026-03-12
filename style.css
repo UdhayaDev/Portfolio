@@ -93,26 +93,19 @@ border-radius:8px;
 
 
 /* PROJECTS */
-
 .project-container{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
 
 .project{
 position:relative;
 background:white;
 padding:15px;
-border-radius:12px;
-box-shadow:0 6px 15px rgba(0,0,0,0.1);
+border-radius:10px;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);
 cursor:pointer;
-transition:0.3s;
-}
-
-.project:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 20px rgba(0,0,0,0.15);
 }
 
 .project img{
@@ -123,47 +116,28 @@ margin-bottom:10px;
 
 .project h3{
 margin:10px 0;
-font-size:18px;
 }
 
-/* blink animation */
-
-.blink{
-animation:blinkEffect 0.3s;
-}
-
-@keyframes blinkEffect{
-
-0%{opacity:1}
-
-50%{opacity:0.4}
-
-100%{opacity:1}
-
-}
-
-/* description popup */
+/* hidden description box */
 
 .project-desc{
-position:absolute;
-top:10px;
-left:105%;
-width:280px;
-max-height:300px;
-overflow-y:auto;
-background:white;
-padding:18px;
-border-radius:10px;
-box-shadow:0 8px 20px rgba(0,0,0,0.2);
-opacity:0;
-visibility:hidden;
-transition:0.3s ease;
-z-index:10;
-font-size:14px;
-line-height:1.5;
+    position:absolute;
+    top:10px;
+    left:105%;
+    width:280px; /* slightly wider for longer description */
+    max-height:300px; /* limit height */
+    overflow-y:auto; /* scroll if content exceeds height */
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+    z-index:10;
 }
 
-/* speech arrow */
+/* speech bubble arrow */
 
 .project-desc::before{
 content:"";
@@ -175,22 +149,9 @@ border-style:solid;
 border-color:transparent white transparent transparent;
 }
 
-/* show description */
-
 .project-desc.show{
 opacity:1;
 visibility:visible;
-}
-
-/* scroll styling */
-
-.project-desc::-webkit-scrollbar{
-width:6px;
-}
-
-.project-desc::-webkit-scrollbar-thumb{
-background:#ccc;
-border-radius:5px;
 }
 
 /* EXPERIENCE TIMELINE */
@@ -260,39 +221,26 @@ transition:0.3s;
 background:#0056b3;
 }
 
-/* MEDIA */
-@media (max-width:768px){
+@media (max-width: 768px) {
+    /* Stack project cards vertically on small screens */
+    .project-container {
+        grid-template-columns: 1fr;
+    }
 
-.hero-container{
-flex-direction:column;
-text-align:center;
-}
+    /* Make the pop-up appear below the project card */
+    .project-desc {
+        position: relative;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
 
-.project-container{
-grid-template-columns:1fr;
-}
-
-/* popup becomes below card */
-
-.project-desc{
-position:relative;
-left:0;
-top:10px;
-width:100%;
-margin-top:10px;
-opacity:0;
-visibility:hidden;
-}
-
-.project-desc.show{
-opacity:1;
-visibility:visible;
-}
-
-/* remove arrow on mobile */
-
-.project-desc::before{
-display:none;
-}
-
+    /* Remove the speech bubble arrow on mobile */
+    .project-desc::before {
+        display: none;
+    }
 }
