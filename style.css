@@ -98,65 +98,95 @@ border-radius:8px;
 
 
 /* PROJECTS */
-.project-container{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
-.project{
-position:relative;
-background:white;
-padding:15px;
-border-radius:10px;
-box-shadow:0 5px 10px rgba(0,0,0,0.1);
-cursor:pointer;
+/* Project card */
+.project {
+    position: relative;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: 2px solid transparent; /* default outline */
 }
 
-.project img{
-width:100%;
-border-radius:10px;
-margin-bottom:10px;
+/* Blink outline on hover */
+.project:hover {
+    outline: 2px dashed #007bff;
+    animation: blink 1s infinite;
 }
 
-.project h3{
-margin:10px 0;
+@keyframes blink {
+    0%, 50%, 100% { outline-color: #007bff; }
+    25%, 75% { outline-color: transparent; }
 }
 
-/* hidden description box */
-
-.project-desc{
-    position:absolute;
-    top:10px;
-    left:105%;
-    width:280px; /* slightly wider for longer description */
-    max-height:300px; /* limit height */
-    overflow-y:auto; /* scroll if content exceeds height */
-    background:white;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    opacity:0;
-    visibility:hidden;
-    transition:0.3s;
-    z-index:10;
+/* Project image */
+.project img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-/* speech bubble arrow */
-
-.project-desc::before{
-content:"";
-position:absolute;
-left:-10px;
-top:20px;
-border-width:10px;
-border-style:solid;
-border-color:transparent white transparent transparent;
+/* Project title */
+.project h3 {
+    margin: 10px 0;
 }
 
-.project-desc.show{
-opacity:1;
-visibility:visible;
+/* Hidden description box */
+.project-desc {
+    position: absolute;
+    top: 10px;
+    left: 105%;
+    width: 280px; /* slightly wider for longer description */
+    max-height: 300px; /* limit height */
+    overflow-y: auto; /* scroll if content exceeds height */
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+/* Speech bubble arrow */
+.project-desc::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+}
+
+/* Show description when active (on click/tap) */
+.project-desc.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    .project-desc {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .project-desc::before {
+        display: none; /* remove arrow on mobile */
+    }
 }
 
 /* EXPERIENCE TIMELINE */
